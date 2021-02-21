@@ -2,13 +2,19 @@
     // Assignments
     let error = "";
     let canvas = document.querySelector("#canvas");
-    let context = canvas.getContext("2D");
+    let context = canvas.getContext("2d");
     let video = document.querySelector("#video");
 
     // Event listeners
+
     document.querySelector("#snap").addEventListener('click', () => {
         context.drawImage(video, 0,0,640,480); // x,y,w,h
+        video.classList.add('hidden');
+        canvas.style.display = 'block';
+        // if this doesn't look good, try and do an absolute position with one on top of the other
+        // then just remove the video, or dynamically alter the z-index
     });
+
     document.querySelector("#initWebcam").addEventListener('click', () => {
         webcamCheck();
     });
@@ -50,8 +56,8 @@
     }
 
     function setError(message = "") {
-        if (message === "") error += "Missing error text. "
-        else error += message;
+        if (message === "") error = "Missing error text. "
+        else error = message;
     }
 
     function showVideoControls() {
